@@ -1,0 +1,12 @@
+@import "../../index.scss";
+
+.Card {
+  color: $text-color;
+  max-width: 500px;
+  width: 100%;
+  border: 1px solid black;
+}
+
+h1 {
+  text-align: center;
+}
