@@ -4,10 +4,11 @@
   max-width: 700px;
   width: 100%;
   padding: 80px;
-  background: var(--text-color);
+  background: var(--alt-color);
   border-radius: 5px;
   box-shadow: 0px 0px 30px -3px rgba(0, 0, 0, 0.3);
   transition: opacity 0.4s ease;
+  will-change: transition, transform, opacity;
 }
 
 .fade-out {
@@ -22,12 +23,14 @@ h1 {
   color: var(--primary-color);
   text-align: center;
   transition: 0.4s ease;
+  will-change: transition;
 }
 
 h4 {
   color: var(--primary-color);
   text-align: right;
   transition: 0.4s ease;
+  will-change: transition;
 }
 
 .buttons-grid {
@@ -42,8 +45,9 @@ button {
   border: none;
   cursor: pointer;
   background: var(--primary-color);
-  color: var(--text-color);
+  color: var(--alt-color);
   transition: 0.4s ease;
+  will-change: transition;
   padding: 10px 20px;
   border-radius: 3px;
   font-size: 16px;
