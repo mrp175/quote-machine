@@ -7,11 +7,13 @@
   background: $text-color;
   border-radius: 5px;
   box-shadow: 15px 15px 0px 0px rgba(0, 0, 0, 0.4);
-  transition: 0.4s ease;
+  transition: opacity 0.4s ease;
 }
 
 .fade-out {
+  transition: opacity 0.4s ease, transform 0.4s ease;
   opacity: 0;
+  transform: scale(110%);
   pointer-events: none;
 }
 
@@ -43,6 +45,8 @@ button {
   transition: 0.4s ease;
   padding: 10px;
   border-radius: 3px;
+  font-size: 16px;
+  font-weight: 100;
 }
 
 .new-quote {
