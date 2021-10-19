@@ -1,12 +1,44 @@
 @import "../../index.scss";
 
 .Card {
-  color: $text-color;
   max-width: 500px;
   width: 100%;
-  border: 1px solid black;
+  padding: 80px;
+  background: $text-color;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, 0.4);
+  transition: 0.4s ease;
+}
+
+.fade-out {
+  opacity: 0;
+  pointer-events: none;
 }
 
 h1 {
+  font-size: 25px;
+  color: var(--primary-color);
   text-align: center;
+}
+
+h4 {
+  color: var(--primary-color);
+  text-align: right;
+}
+
+.buttons-grid {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+}
+
+button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background: var(--primary-color);
+  color: $text-color;
+}
+
+.new-quote {
+  justify-self: end;
 }

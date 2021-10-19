@@ -1,8 +1,9 @@
 .App {
-  background: rgb(52, 73, 94);
+  background: var(--primary-color);
   height: 100vh;
   width: 100vw;
   display: grid;
   align-items: center;
   justify-items: center;
+  transition: 1s ease;
 }
