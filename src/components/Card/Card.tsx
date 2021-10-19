@@ -7,22 +7,23 @@ import createQuotes from "../../utils/createQuoteFile";
 const quotesList: Quote[] = createQuotes(quotes);
 
 const colors = [
-  "#37474F",
-  "#4E342E",
-  "#01579B",
-  "#95A5A6",
-  "#9B59B6",
-  "#3498DB",
+  "#735091",
+  "#5a5fa8",
+  "#3d7692",
+  "#518a6e",
+  "#797460",
+  "#ac5959",
 ];
 
 let color = 1;
 
 const root = document.documentElement;
 
+function randomNumber(quotes: Quote[]): number {
+  return Math.floor(Math.random() * quotes.length);
+}
+
 function Card(): JSX.Element {
-  function randomNumber(quotes: Quote[]): number {
-    return Math.floor(Math.random() * quotes.length);
-  }
   const [quote, setQuote] = useState(quotesList[randomNumber(quotesList)]);
   const [opacity, setOpacity] = useState("");
 
@@ -51,11 +52,9 @@ function Card(): JSX.Element {
 
   return (
     <div className={`Card ${opacity}`}>
-      <h1>{quote.quote}</h1>
+      <h1>"{quote.quote}"</h1>
       <h4>- {quote.quoter}</h4>
       <div className="buttons-grid">
-        <button>twitter</button>
-        <button>tumblr</button>
         <button
           className="new-quote"
           onClick={function () {
