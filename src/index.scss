@@ -1,13 +1,12 @@
 :root {
-  --primary-color: #735091;
+  --primary-color: hsl(0, 24%, 40%);
+  --text-color: rgba(255, 255, 255, 0.8);
 }
 
 * {
   box-sizing: border-box;
   font-weight: 500;
 }
-
-$text-color: white;
 
 body {
   margin: 0;

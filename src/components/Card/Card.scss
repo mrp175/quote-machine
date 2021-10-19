@@ -1,10 +1,10 @@
 @import "../../index.scss";
 
 .Card {
-  max-width: 500px;
+  max-width: 700px;
   width: 100%;
   padding: 80px;
-  background: $text-color;
+  background: var(--text-color);
   border-radius: 5px;
   box-shadow: 0px 0px 30px -3px rgba(0, 0, 0, 0.3);
   transition: opacity 0.4s ease;
@@ -18,7 +18,7 @@
 }
 
 h1 {
-  font-size: 25px;
+  font-size: 27px;
   color: var(--primary-color);
   text-align: center;
   transition: 0.4s ease;
@@ -42,12 +42,12 @@ button {
   border: none;
   cursor: pointer;
   background: var(--primary-color);
-  color: $text-color;
+  color: var(--text-color);
   transition: 0.4s ease;
-  padding: 10px;
+  padding: 10px 20px;
   border-radius: 3px;
   font-size: 16px;
-  font-weight: 100;
+  font-weight: 600;
 }
 
 .new-quote {
