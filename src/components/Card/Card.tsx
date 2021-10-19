@@ -1,33 +1,36 @@
 import "./Card.scss";
-import { useEffect, useRef, useState } from "react";
-import GetNewQuote from "../../utils/getQuote";
+import { useEffect, useState } from "react";
+import { Quote } from "../../types/types";
+import { quotes } from "../../quotes/quotes";
+import createQuotes from "../../utils/createQuoteFile";
+
+const quotesList: Quote[] = createQuotes(quotes);
 
 const colors = [
-  "#16a085",
-  "#27ae60",
-  "#2c3e50",
-  "#f39c12",
-  "#e74c3c",
-  "#9b59b6",
-  "#FB6964",
-  "#342224",
-  "#472E32",
-  "#BDBB99",
-  "#77B1A9",
-  "#73A857",
+  "#37474F",
+  "#4E342E",
+  "#01579B",
+  "#95A5A6",
+  "#9B59B6",
+  "#3498DB",
 ];
 
-let color = 0;
+let color = 1;
 
 const root = document.documentElement;
 
 function Card(): JSX.Element {
-  const [quote, getQuote] = GetNewQuote();
+  function randomNumber(quotes: Quote[]): number {
+    return Math.floor(Math.random() * quotes.length);
+  }
+  const [quote, setQuote] = useState(quotesList[randomNumber(quotesList)]);
   const [opacity, setOpacity] = useState("");
 
-  useEffect(function () {
-    getQuote();
-  }, []);
+  function getNewQuote() {
+    setTimeout(function () {
+      setQuote(quotesList[randomNumber(quotesList)]);
+    }, 400);
+  }
 
   function transition() {
     setOpacity("fade-out");
@@ -56,7 +59,7 @@ function Card(): JSX.Element {
         <button
           className="new-quote"
           onClick={function () {
-            getQuote();
+            getNewQuote();
             transition();
           }}
         >

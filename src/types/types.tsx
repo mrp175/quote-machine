@@ -3,3 +3,8 @@ export type QuoteResponse = {
   quoter: string;
   quoter_key: string;
 };
+
+export type Quote = {
+  quote: string;
+  quoter: string;
+};
