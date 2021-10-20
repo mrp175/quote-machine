@@ -7,12 +7,14 @@
   background: var(--alt-color);
   border-radius: 5px;
   box-shadow: 0px 0px 30px -3px rgba(0, 0, 0, 0.3);
-  transition: opacity 0.4s ease;
+  transition: opacity var(--transition-time) ease;
   will-change: transition, transform, opacity;
 }
 
 .fade-out {
-  transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+  transition: opacity var(--transition-time) ease,
+    transform var(--transition-time) ease,
+    box-shadow var(--transition-time) ease;
   opacity: 0;
   transform: scale(105%);
   pointer-events: none;
@@ -22,14 +24,14 @@ h1 {
   font-size: 27px;
   color: var(--primary-color);
   text-align: center;
-  transition: 0.4s ease;
+  transition: var(--transition-time) ease;
   will-change: transition;
 }
 
 h4 {
   color: var(--primary-color);
   text-align: right;
-  transition: 0.4s ease;
+  transition: var(--transition-time) ease;
   will-change: transition;
 }
 
@@ -46,7 +48,7 @@ button {
   cursor: pointer;
   background: var(--primary-color);
   color: var(--alt-color);
-  transition: 0.4s ease;
+  transition: var(--transition-time) ease;
   will-change: transition;
   padding: 10px 20px;
   border-radius: 3px;

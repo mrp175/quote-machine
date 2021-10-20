@@ -9,6 +9,7 @@ import pauseIcon from "../../svgs/pause-icon.svg";
 
 let color = 1;
 const colors: string[] = generateColors();
+let transitionTime: number = 1000;
 
 function Card(): JSX.Element {
   const quotesList: Quote[] = createQuotes(quotes);
@@ -27,7 +28,7 @@ function Card(): JSX.Element {
   function getNewQuote(): void {
     setTimeout(function (): void {
       setQuote(quotesList[randomNumber(quotesList)]);
-    }, 400);
+    }, transitionTime);
   }
 
   function transition(): void {
@@ -46,6 +47,7 @@ function Card(): JSX.Element {
     } else {
       setIcon("pause");
       setTimeout(function () {
+        root.style.setProperty("--transition-time", "1s");
         getNewQuote();
         transition();
       }, 2000);
@@ -62,6 +64,7 @@ function Card(): JSX.Element {
   useEffect(
     function (): () => void {
       if (icon === "pause") {
+        transitionTime = 1000;
         timer = setInterval(function () {
           getNewQuote();
           transition();
@@ -74,6 +77,15 @@ function Card(): JSX.Element {
     [icon]
   );
 
+  function handleClick(): void {
+    clearInterval(timer);
+    transitionTime = 350;
+    root.style.setProperty("--transition-time", transitionTime / 1000 + "s");
+    getNewQuote();
+    transition();
+    setIcon("play");
+  }
+
   return (
     <div className={`Card ${animate}`}>
       <h1>"{quote.quote}"</h1>
@@ -85,14 +97,7 @@ function Card(): JSX.Element {
             src={icon === "play" ? playIcon : pauseIcon}
           ></img>
         </button>
-        <button
-          className="new-quote"
-          onClick={function () {
-            getNewQuote();
-            transition();
-            setIcon("play");
-          }}
-        >
+        <button className="new-quote" onClick={handleClick}>
           New Quote
         </button>
       </div>
