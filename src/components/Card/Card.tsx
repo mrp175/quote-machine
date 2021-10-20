@@ -11,7 +11,7 @@ let color = 1;
 const colors: string[] = generateColors();
 let transitionTime: number = 1000;
 let quoteInterval: number = 10000;
-const quoteTimeout: number = 2000;
+const timeoutTime: number = 2000;
 let timer: NodeJS.Timeout;
 let timeout: NodeJS.Timeout;
 
@@ -55,8 +55,7 @@ function Card(): JSX.Element {
         root.style.setProperty("--transition-time", "1s");
         getNewQuote();
         transition();
-        quoteInterval = quoteInterval + quoteTimeout;
-      }, quoteTimeout);
+      }, timeoutTime);
     }
   }
 
@@ -70,8 +69,9 @@ function Card(): JSX.Element {
   useEffect(
     function (): () => void {
       if (icon === "pause") {
+        clearInterval(timer);
         transitionTime = 1000;
-        timer = setInterval(function () {
+        timer = setTimeout(function () {
           getNewQuote();
           transition();
         }, quoteInterval);
@@ -80,7 +80,7 @@ function Card(): JSX.Element {
         clearInterval(timer);
       };
     },
-    [icon]
+    [animate, icon]
   );
 
   useEffect(function () {
