@@ -37,7 +37,7 @@ h4 {
   margin-top: 50px;
   display: grid;
   grid-gap: 15px;
-  justify-content: center;
+  grid-template-columns: 1fr 1fr;
 }
 
 button {
@@ -56,4 +56,16 @@ button {
 
 .new-quote {
   justify-self: end;
+}
+
+.play-pause {
+  justify-self: start;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+.icon {
+  width: 15px;
+  opacity: 0.8;
 }
