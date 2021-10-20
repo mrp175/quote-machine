@@ -18,9 +18,6 @@ let timeout: NodeJS.Timeout;
 function Card(): JSX.Element {
   const quotesList: Quote[] = createQuotes(quotes);
   const root: HTMLElement = document.documentElement;
-  function randomNumber(quotes: Quote[]): number {
-    return Math.floor(Math.random() * quotes.length);
-  }
 
   const [quote, setQuote] = useState<Quote>(
     quotesList[randomNumber(quotesList)]
@@ -28,6 +25,10 @@ function Card(): JSX.Element {
   const [animate, setAnimate] = useState<string>("");
   const [icon, setIcon] = useState<string>("pause");
   const [hidden, setHidden] = useState<string>("hidden");
+
+  function randomNumber(quotes: Quote[]): number {
+    return Math.floor(Math.random() * quotes.length);
+  }
 
   function getNewQuote(): void {
     setTimeout(function (): void {
@@ -59,9 +60,25 @@ function Card(): JSX.Element {
     }
   }
 
+  function handleClick(): void {
+    clearInterval(timer);
+    clearTimeout(timeout);
+    transitionTime = 350;
+    root.style.setProperty("--transition-time", transitionTime / 1000 + "s");
+    getNewQuote();
+    transition();
+    setIcon("play");
+  }
+
   useEffect(
     function (): void {
       setAnimate("");
+      const quoteLength = quote.quote.length;
+      if (quoteLength < 120) {
+        quoteInterval = 10000;
+      } else {
+        quoteInterval = 10000 + quoteLength * 25;
+      }
     },
     [quote]
   );
@@ -86,16 +103,6 @@ function Card(): JSX.Element {
   useEffect(function () {
     setHidden("");
   }, []);
-
-  function handleClick(): void {
-    clearInterval(timer);
-    clearTimeout(timeout);
-    transitionTime = 350;
-    root.style.setProperty("--transition-time", transitionTime / 1000 + "s");
-    getNewQuote();
-    transition();
-    setIcon("play");
-  }
 
   return (
     <div className={`Card ${animate} ${hidden}`}>
