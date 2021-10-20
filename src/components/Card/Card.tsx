@@ -10,11 +10,12 @@ import pauseIcon from "../../svgs/pause-icon.svg";
 let color = 1;
 const colors: string[] = generateColors();
 let transitionTime: number = 1000;
+let timer: NodeJS.Timeout;
+let timeout: NodeJS.Timeout;
 
 function Card(): JSX.Element {
   const quotesList: Quote[] = createQuotes(quotes);
   const root: HTMLElement = document.documentElement;
-  let timer: NodeJS.Timeout;
   function randomNumber(quotes: Quote[]): number {
     return Math.floor(Math.random() * quotes.length);
   }
@@ -44,9 +45,10 @@ function Card(): JSX.Element {
   function playPause(): void {
     if (icon === "pause") {
       setIcon("play");
+      clearTimeout(timeout);
     } else {
       setIcon("pause");
-      setTimeout(function () {
+      timeout = setTimeout(function () {
         root.style.setProperty("--transition-time", "1s");
         getNewQuote();
         transition();
