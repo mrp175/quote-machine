@@ -7,7 +7,7 @@ import { generateColors } from "../../utils/generateColors";
 import playIcon from "../../svgs/play-icon.svg";
 import pauseIcon from "../../svgs/pause-icon.svg";
 
-let color = 1;
+let color: number = 1;
 const colors: string[] = generateColors();
 let transitionTime: number = 1000;
 let quoteInterval: number = 10000;
@@ -73,7 +73,7 @@ function Card(): JSX.Element {
   useEffect(
     function (): void {
       setAnimate("");
-      const quoteLength = quote.quote.length;
+      const quoteLength: number = quote.quote.length;
       if (quoteLength < 120) {
         quoteInterval = 10000;
       } else {
