@@ -10,6 +10,8 @@ import pauseIcon from "../../svgs/pause-icon.svg";
 let color = 1;
 const colors: string[] = generateColors();
 let transitionTime: number = 1000;
+let quoteInterval: number = 10000;
+const quoteTimeout: number = 2000;
 let timer: NodeJS.Timeout;
 let timeout: NodeJS.Timeout;
 
@@ -25,6 +27,7 @@ function Card(): JSX.Element {
   );
   const [animate, setAnimate] = useState<string>("");
   const [icon, setIcon] = useState<string>("pause");
+  const [hidden, setHidden] = useState<string>("hidden");
 
   function getNewQuote(): void {
     setTimeout(function (): void {
@@ -42,7 +45,7 @@ function Card(): JSX.Element {
     }
   }
 
-  function playPause(): void {
+  function handlePlayPause(): void {
     if (icon === "pause") {
       setIcon("play");
       clearTimeout(timeout);
@@ -52,7 +55,8 @@ function Card(): JSX.Element {
         root.style.setProperty("--transition-time", "1s");
         getNewQuote();
         transition();
-      }, 2000);
+        quoteInterval = quoteInterval + quoteTimeout;
+      }, quoteTimeout);
     }
   }
 
@@ -70,7 +74,7 @@ function Card(): JSX.Element {
         timer = setInterval(function () {
           getNewQuote();
           transition();
-        }, 10000);
+        }, quoteInterval);
       }
       return function (): void {
         clearInterval(timer);
@@ -79,8 +83,13 @@ function Card(): JSX.Element {
     [icon]
   );
 
+  useEffect(function () {
+    setHidden("");
+  }, []);
+
   function handleClick(): void {
     clearInterval(timer);
+    clearTimeout(timeout);
     transitionTime = 350;
     root.style.setProperty("--transition-time", transitionTime / 1000 + "s");
     getNewQuote();
@@ -89,11 +98,11 @@ function Card(): JSX.Element {
   }
 
   return (
-    <div className={`Card ${animate}`}>
+    <div className={`Card ${animate} ${hidden}`}>
       <h1>"{quote.quote}"</h1>
       <h4>- {quote.quoter}</h4>
       <div className="buttons-grid">
-        <button className="play-pause" onClick={playPause}>
+        <button className="play-pause" onClick={handlePlayPause}>
           <img
             className="icon"
             src={icon === "play" ? playIcon : pauseIcon}

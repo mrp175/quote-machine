@@ -20,6 +20,10 @@
   pointer-events: none;
 }
 
+.hidden {
+  opacity: 0;
+}
+
 h1 {
   font-size: 27px;
   color: var(--primary-color);
